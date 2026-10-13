@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پشتگیری — پزیشکی من</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+      background: #F5F8FC;
+      color: #1E2432;
+      line-height: 1.8;
+      padding: 20px;
+      transition: all 0.3s;
+    }
+    body.lang-en {
+      direction: ltr;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      padding: 40px;
+    }
+    /* ===== Language Switcher ===== */
+    .lang-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .lang-btn {
+      padding: 8px 20px;
+      border: 2px solid #E3E9F2;
+      background: white;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #7A8699;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .lang-btn:hover {
+      border-color: #1B63C2;
+      color: #1B63C2;
+    }
+    .lang-btn.active {
+      background: #1B63C2;
+      border-color: #1B63C2;
+      color: white;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #EAF2FD;
+    }
+    .logo {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #1B63C2, #124A96);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      color: #1B63C2;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: #7A8699;
+      font-size: 14px;
+    }
+    h2 {
+      color: #1B63C2;
+      font-size: 20px;
+      margin-top: 30px;
+      margin-bottom: 12px;
+      padding-right: 12px;
+      border-right: 4px solid #1B63C2;
+    }
+    body.lang-en h2 {
+      padding-right: 0;
+      padding-left: 12px;
+      border-right: none;
+      border-left: 4px solid #1B63C2;
+    }
+    p {
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+    ul {
+      margin-right: 24px;
+      margin-bottom: 16px;
+    }
+    body.lang-en ul {
+      margin-right: 0;
+      margin-left: 24px;
+    }
+    li {
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+    .info-box {
+      background: #EAF2FD;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 20px 0;
+      border-right: 4px solid #1B63C2;
+    }
+    body.lang-en .info-box {
+      border-right: none;
+      border-left: 4px solid #1B63C2;
+    }
+    .contact-card {
+      background: white;
+      border: 1px solid #E3E9F2;
+      border-radius: 14px;
+      padding: 20px;
+      margin: 16px 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      display: block;
+      color: inherit;
+    }
+    .contact-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(27,99,194,0.15);
+      border-color: #1B63C2;
+    }
+    .contact-card-icon {
+      width: 48px;
+      height: 48px;
+      background: #EAF2FD;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+    .contact-card-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #1B63C2;
+      margin-bottom: 6px;
+    }
+    .contact-card-desc {
+      font-size: 13px;
+      color: #7A8699;
+      line-height: 1.6;
+    }
+    .faq-item {
+      background: white;
+      border: 1px solid #E3E9F2;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .faq-question {
+      font-weight: bold;
+      color: #1B63C2;
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+    .faq-answer {
+      font-size: 14px;
+      color: #1E2432;
+      line-height: 1.7;
+      padding-top: 8px;
+      border-top: 1px solid #F5F8FC;
+      margin-top: 8px;
+    }
+    .info-section {
+      background: linear-gradient(135deg, #1B63C2, #124A96);
+      color: white;
+      border-radius: 14px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .info-section h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+    .info-section p {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      font-size: 14px;
+    }
+    .info-row:last-child {
+      border-bottom: none;
+    }
+    .info-row strong {
+      color: rgba(255,255,255,0.8);
+    }
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #E3E9F2;
+      color: #7A8699;
+      font-size: 13px;
+    }
+    .lang-content {
+      display: none;
+    }
+    .lang-content.active {
+      display: block;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 24px;
+      }
+      h1 {
+        font-size: 22px;
+      }
+      h2 {
+        font-size: 17px;
+      }
+      p, li {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- ===== Language Switcher ===== -->
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="switchLang('ckb')" id="btn-ckb">کوردی</button>
+      <button class="lang-btn" onclick="switchLang('ar')" id="btn-ar">العربية</button>
+      <button class="lang-btn" onclick="switchLang('en')" id="btn-en">English</button>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ✅ کوردی -->
+    <!-- ========================================================= -->
+    <div class="lang-content active" id="content-ckb">
+      <div class="header">
+        <div class="logo">💬</div>
+        <h1>پشتگیری</h1>
+        <p class="subtitle">ئەپی "پزیشکی من" — طبيبي</p>
+      </div>
+
+      <div class="info-box">
+        <p><strong>بەخێربێیت بۆ پشتگیری پزیشکی من!</strong></p>
+        <p>ئێمە لێرەین بۆ یارمەتیدانت. ئەگەر پرسیار یان کێشەیەکت هەیە، تکایە لە ڕێگایەک لە ڕێگاکانی ژێرەوە پەیوەندیمان پێوە بکە.</p>
+      </div>
+
+      <h2>📞 پەیوەندی</h2>
+
+      <a href="mailto:noraconfirming@gmail.com" class="contact-card">
+        <div class="contact-card-icon">📧</div>
+        <div class="contact-card-title">ئیمەیڵ</div>
+        <div class="contact-card-desc">
+          noraconfirming@gmail.com<br>
+          وەڵام لە ماوەی ٢٤-٤٨ کاتژمێر
+        </div>
+      </a>
+
+      <a href="https://wa.me/9647737013035" class="contact-card">
+        <div class="contact-card-icon">💚</div>
+        <div class="contact-card-title">WhatsApp</div>
+        <div class="contact-card-desc">
+          +964 773 701 3035<br>
+          پەیوەندی خێرا لە کاتی کارکردن
+        </div>
+      </a>
+
+      <a href="tel:+9647737013035" class="contact-card">
+        <div class="contact-card-icon">📱</div>
+        <div class="contact-card-title">تەلەفۆن</div>
+        <div class="contact-card-desc">
+          +964 773 701 3035<br>
+          شەممە تا پێنجشەممە: ٩:٠٠ - ١٥:٠٠
+        </div>
+      </a>
+
+      <h2>❓ پرسیاری باو</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">چۆن هەژمار دروست بکەم؟</div>
+        <div class="faq-answer">
+          لە پەڕەی سەرەکی، کلیک لە "تۆمارکردن" بکە و زانیارییەکان پڕ بکەوە. بۆ نەخۆش تەنها ناو و ژمارەی مۆبایل پێویستە. بۆ دکتۆر پێویستە کۆدی تایبەتی دکتۆر (DXXXXXX) هەبێت.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">چۆن نۆرە وەربگرم؟</div>
+        <div class="faq-answer">
+          لە پەڕەی سەرەکی، دکتۆرەکە بدۆزەرەوە، کلیک لە پڕۆفایلەکەی بکە، پاشان کلیک لە "داواکاری نۆرە". ڕۆژ و کات هەڵبژێرە و داوای بکە.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">وشەی نهێنیم لەبیر چووە، چی بکەم؟</div>
+        <div class="faq-answer">
+          پەیوەندیمان پێوە بکە بە ئیمەیڵ یان WhatsApp. تیمەکەمان یارمەتیت دەدات بۆ گەڕاندنەوەی ئەکاونتەکەت.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">چۆن ئەکاونتەکەم بسڕمەوە؟</div>
+        <div class="faq-answer">
+          لە پرۆفایل → ڕێکخستنەکان → "سڕینەوەی ئەکاونت" بکە. یان پەیوەندیمان پێوە بکە بۆ ئەوەی تیمەکەمان بیسڕێتەوە.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">ئەپ لە دۆخی Offline کار دەکات؟</div>
+        <div class="faq-answer">
+          بەڵێ! ئەپەکە پشتگیری دۆخی Offline دەکات. دەتوانیت داتا ببینیت و دەستکاری بکەیت، و کاتێک ئینتەرنێت گەڕایەوە، هەموو شتێک بە خۆکاری هەڵدەسوڕێت.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">داتاکانم پارێزراون؟</div>
+        <div class="faq-answer">
+          بەڵێ. ئێمە SSL/TLS encryption بەکاردەهێنین، RLS لە Supabase، و Backup ی ڕۆژانە. تکایە سیاسەتی تایبەتیمان بخوێنەرەوە بۆ زانیاری زیاتر.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">چۆن ببمە دکتۆری سپۆنسەرکراو؟</div>
+        <div class="faq-answer">
+          لە پرۆفایل → "پینکردنی پڕۆفایل" بکە. دوای قبوڵکردنی ئەدمین، پڕۆفایلەکەت لە سەرەوەی لیستی دکتۆرەکان دەردەکەوێت.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h3>📱 زانیاری ئەپ</h3>
+        <div class="info-row">
+          <strong>ناوی ئەپ</strong>
+          <span>پزیشکی من</span>
+        </div>
+        <div class="info-row">
+          <strong>وەشان</strong>
+          <span>1.0.0+2</span>
+        </div>
+        <div class="info-row">
+          <strong>دروستکار</strong>
+          <span>محمد جواد (MJK Tech)</span>
+        </div>
+        <div class="info-row">
+          <strong>زمان</strong>
+          <span>کوردی + عەرەبی</span>
+        </div>
+        <div class="info-row">
+          <strong>پلاتفۆرم</strong>
+          <span>Android + iOS + Web</span>
+        </div>
+      </div>
+
+      <h2>⏰ کاتی وەڵامدانەوە</h2>
+      <ul>
+        <li><strong>ئیمەیڵ:</strong> ٢٤-٤٨ کاتژمێر</li>
+        <li><strong>WhatsApp:</strong> ٢-٦ کاتژمێر (لە کاتی کارکردن)</li>
+        <li><strong>تەلەفۆن:</strong> یەکسەر (لە کاتی کارکردن)</li>
+      </ul>
+      <p><strong>کاتی کارکردن:</strong> شەممە تا پێنجشەممە، ٩:٠٠ - ١٥:٠٠ (کاتی عێراق)</p>
+
+      <div class="footer">
+        <p>© 2026 پزیشکی من — هەموو مافەکان پارێزراون</p>
+        <p style="margin-top: 8px;">دروستکراوە بە ❤️ لە کوردستان</p>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ✅ عەرەبی -->
+    <!-- ========================================================= -->
+    <div class="lang-content" id="content-ar">
+      <div class="header">
+        <div class="logo">💬</div>
+        <h1>الدعم</h1>
+        <p class="subtitle">تطبيق "طبيبي" — پزیشکی من</p>
+      </div>
+
+      <div class="info-box">
+        <p><strong>مرحباً بك في دعم طبيبي!</strong></p>
+        <p>نحن هنا لمساعدتك. إذا كان لديك أي أسئلة أو مشاكل، يرجى التواصل معنا عبر إحدى الطرق أدناه.</p>
+      </div>
+
+      <h2>📞 التواصل</h2>
+
+      <a href="mailto:noraconfirming@gmail.com" class="contact-card">
+        <div class="contact-card-icon">📧</div>
+        <div class="contact-card-title">البريد الإلكتروني</div>
+        <div class="contact-card-desc">
+          noraconfirming@gmail.com<br>
+          الرد خلال ٢٤-٤٨ ساعة
+        </div>
+      </a>
+
+      <a href="https://wa.me/9647737013035" class="contact-card">
+        <div class="contact-card-icon">💚</div>
+        <div class="contact-card-title">واتساب</div>
+        <div class="contact-card-desc">
+          +964 773 701 3035<br>
+          تواصل سريع خلال ساعات العمل
+        </div>
+      </a>
+
+      <a href="tel:+9647737013035" class="contact-card">
+        <div class="contact-card-icon">📱</div>
+        <div class="contact-card-title">الهاتف</div>
+        <div class="contact-card-desc">
+          +964 773 701 3035<br>
+          السبت إلى الخميس: ٩:٠٠ - ١٥:٠٠
+        </div>
+      </a>
+
+      <h2>❓ الأسئلة الشائعة</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">كيف أنشئ حساباً؟</div>
+        <div class="faq-answer">
+          من الصفحة الرئيسية، انقر على "تسجيل جديد" واملأ المعلومات. للمريض يكفي الاسم ورقم الهاتف. للطبيب يجب أن يكون لديه رمز الطبيب الخاص (DXXXXXX).
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">كيف أحجز موعداً؟</div>
+        <div class="faq-answer">
+          من الصفحة الرئيسية، ابحث عن الطبيب، انقر على ملفه، ثم انقر على "حجز موعد". اختر التاريخ والوقت واحجز.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">نسيت كلمة المرور، ماذا أفعل؟</div>
+        <div class="faq-answer">
+          تواصل معنا عبر البريد الإلكتروني أو واتساب. سيساعدك فريقنا في استعادة حسابك.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">كيف أحذف حسابي؟</div>
+        <div class="faq-answer">
+          من الملف الشخصي → الإعدادات → "حذف الحساب". أو تواصل معنا ليقوم فريقنا بحذفه.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">هل يعمل التطبيق بدون إنترنت؟</div>
+        <div class="faq-answer">
+          نعم! يدعم التطبيق وضع عدم الاتصال. يمكنك عرض البيانات وتعديلها، وعندما يعود الإنترنت، تتم المزامنة تلقائياً.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">هل بياناتي محمية؟</div>
+        <div class="faq-answer">
+          نعم. نستخدم تشفير SSL/TLS، RLS في Supabase، ونسخ احتياطي يومي. يرجى قراءة سياسة الخصوصية لمزيد من المعلومات.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">كيف أصبح طبيباً ممولاً؟</div>
+        <div class="faq-answer">
+          من الملف الشخصي → "تثبيت الملف". بعد موافقة المشرف، سيظهر ملفك في أعلى قائمة الأطباء.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h3>📱 معلومات التطبيق</h3>
+        <div class="info-row">
+          <strong>اسم التطبيق</strong>
+          <span>طبيبي</span>
+        </div>
+        <div class="info-row">
+          <strong>الإصدار</strong>
+          <span>1.0.0+2</span>
+        </div>
+        <div class="info-row">
+          <strong>المطور</strong>
+          <span>محمد جواد (MJK Tech)</span>
+        </div>
+        <div class="info-row">
+          <strong>اللغة</strong>
+          <span>الكردية + العربية</span>
+        </div>
+        <div class="info-row">
+          <strong>المنصات</strong>
+          <span>Android + iOS + Web</span>
+        </div>
+      </div>
+
+      <h2>⏰ وقت الرد</h2>
+      <ul>
+        <li><strong>البريد الإلكتروني:</strong> ٢٤-٤٨ ساعة</li>
+        <li><strong>واتساب:</strong> ٢-٦ ساعات (خلال ساعات العمل)</li>
+        <li><strong>الهاتف:</strong> فوري (خلال ساعات العمل)</li>
+      </ul>
+      <p><strong>ساعات العمل:</strong> السبت إلى الخميس، ٩:٠٠ - ١٥:٠٠ (بتوقيت العراق)</p>
+
+      <div class="footer">
+        <p>© 2026 طبيبي — جميع الحقوق محفوظة</p>
+        <p style="margin-top: 8px;">صُنع بـ ❤️ في كردستان</p>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ✅ English -->
+    <!-- ========================================================= -->
+    <div class="lang-content" id="content-en">
+      <div class="header">
+        <div class="logo">💬</div>
+        <h1>Support</h1>
+        <p class="subtitle">"My Doctor" App — طبيبي</p>
+      </div>
+
+      <div class="info-box">
+        <p><strong>Welcome to My Doctor Support!</strong></p>
+        <p>We're here to help you. If you have any questions or issues, please contact us through one of the methods below.</p>
+      </div>
+
+      <h2>📞 Contact</h2>
+
+      <a href="mailto:noraconfirming@gmail.com" class="contact-card">
+        <div class="contact-card-icon">📧</div>
+        <div class="contact-card-title">Email</div>
+        <div class="contact-card-desc">
+          noraconfirming@gmail.com<br>
+          Response within 24-48 hours
+        </div>
+      </a>
+
+      <a href="https://wa.me/9647737013035" class="contact-card">
+        <div class="contact-card-icon">💚</div>
+        <div class="contact-card-title">WhatsApp</div>
+        <div class="contact-card-desc">
+          +964 773 701 3035<br>
+          Quick response during working hours
+        </div>
+      </a>
+
+      <a href="tel:+9647737013035" class="contact-card">
+        <div class="contact-card-icon">📱</div>
+        <div class="contact-card-title">Phone</div>
+        <div class="contact-card-desc">
+          +964 773 701 3035<br>
+          Saturday to Thursday: 9:00 AM - 3:00 PM
+        </div>
+      </a>
+
+      <h2>❓ FAQ</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">How do I create an account?</div>
+        <div class="faq-answer">
+          From the main page, click "Register" and fill in the information. For patients, only name and phone number are required. For doctors, the special doctor code (DXXXXXX) is required.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How do I book an appointment?</div>
+        <div class="faq-answer">
+          From the main page, find the doctor, click on their profile, then click "Book Appointment". Select date and time and book.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">I forgot my password, what should I do?</div>
+        <div class="faq-answer">
+          Contact us via email or WhatsApp. Our team will help you recover your account.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How do I delete my account?</div>
+        <div class="faq-answer">
+          From Profile → Settings → "Delete Account". Or contact us so our team can delete it.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Does the app work offline?</div>
+        <div class="faq-answer">
+          Yes! The app supports offline mode. You can view and edit data, and when the internet returns, everything syncs automatically.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Is my data protected?</div>
+        <div class="faq-answer">
+          Yes. We use SSL/TLS encryption, RLS in Supabase, and daily backups. Please read our privacy policy for more information.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How do I become a sponsored doctor?</div>
+        <div class="faq-answer">
+          From Profile → "Pin Profile". After admin approval, your profile will appear at the top of the doctors list.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h3>📱 App Information</h3>
+        <div class="info-row">
+          <strong>App Name</strong>
+          <span>My Doctor</span>
+        </div>
+        <div class="info-row">
+          <strong>Version</strong>
+          <span>1.0.0+2</span>
+        </div>
+        <div class="info-row">
+          <strong>Developer</strong>
+          <span>Muhammad Jawad (MJK Tech)</span>
+        </div>
+        <div class="info-row">
+          <strong>Languages</strong>
+          <span>Kurdish + Arabic</span>
+        </div>
+        <div class="info-row">
+          <strong>Platforms</strong>
+          <span>Android + iOS + Web</span>
+        </div>
+      </div>
+
+      <h2>⏰ Response Time</h2>
+      <ul>
+        <li><strong>Email:</strong> 24-48 hours</li>
+        <li><strong>WhatsApp:</strong> 2-6 hours (during working hours)</li>
+        <li><strong>Phone:</strong> Immediate (during working hours)</li>
+      </ul>
+      <p><strong>Working hours:</strong> Saturday to Thursday, 9:00 AM - 3:00 PM (Iraq time)</p>
+
+      <div class="footer">
+        <p>© 2026 My Doctor — All rights reserved</p>
+        <p style="margin-top: 8px;">Made with ❤️ in Kurdistan</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchLang(lang) {
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.querySelectorAll('.lang-content').forEach(content => {
+        content.classList.remove('active');
+      });
+
+      document.getElementById('btn-' + lang).classList.add('active');
+      document.getElementById('content-' + lang).classList.add('active');
+
+      const body = document.body;
+      if (lang === 'en') {
+        body.setAttribute('dir', 'ltr');
+        body.setAttribute('lang', 'en');
+        body.classList.add('lang-en');
+      } else if (lang === 'ar') {
+        body.setAttribute('dir', 'rtl');
+        body.setAttribute('lang', 'ar');
+        body.classList.remove('lang-en');
+      } else {
+        body.setAttribute('dir', 'rtl');
+        body.setAttribute('lang', 'ckb');
+        body.classList.remove('lang-en');
+      }
+
+      localStorage.setItem('preferred-lang', lang);
+
+      const titles = {
+        'ckb': 'پشتگیری — پزیشکی من',
+        'ar': 'الدعم — طبيبي',
+        'en': 'Support — My Doctor'
+      };
+      document.title = titles[lang];
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('preferred-lang');
+      if (saved && ['ckb', 'ar', 'en'].includes(saved)) {
+        switchLang(saved);
+      }
+    });
+  </script>
+</body>
+</html>
