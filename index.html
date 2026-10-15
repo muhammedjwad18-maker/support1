@@ -5,11 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>پشتگیری — پزیشکی من</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
       background: #F5F8FC;
@@ -18,9 +14,7 @@
       padding: 20px;
       transition: all 0.3s;
     }
-    body.lang-en {
-      direction: ltr;
-    }
+    body.lang-en { direction: ltr; }
     .container {
       max-width: 800px;
       margin: 0 auto;
@@ -29,7 +23,6 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.08);
       padding: 40px;
     }
-    /* ===== Language Switcher ===== */
     .lang-switcher {
       display: flex;
       justify-content: center;
@@ -49,10 +42,7 @@
       transition: all 0.2s;
       font-family: inherit;
     }
-    .lang-btn:hover {
-      border-color: #1B63C2;
-      color: #1B63C2;
-    }
+    .lang-btn:hover { border-color: #1B63C2; color: #1B63C2; }
     .lang-btn.active {
       background: #1B63C2;
       border-color: #1B63C2;
@@ -76,15 +66,8 @@
       font-size: 36px;
       margin-bottom: 16px;
     }
-    h1 {
-      color: #1B63C2;
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
-    .subtitle {
-      color: #7A8699;
-      font-size: 14px;
-    }
+    h1 { color: #1B63C2; font-size: 28px; margin-bottom: 8px; }
+    .subtitle { color: #7A8699; font-size: 14px; }
     h2 {
       color: #1B63C2;
       font-size: 20px;
@@ -99,22 +82,10 @@
       border-right: none;
       border-left: 4px solid #1B63C2;
     }
-    p {
-      margin-bottom: 12px;
-      font-size: 15px;
-    }
-    ul {
-      margin-right: 24px;
-      margin-bottom: 16px;
-    }
-    body.lang-en ul {
-      margin-right: 0;
-      margin-left: 24px;
-    }
-    li {
-      margin-bottom: 8px;
-      font-size: 15px;
-    }
+    p { margin-bottom: 12px; font-size: 15px; }
+    ul { margin-right: 24px; margin-bottom: 16px; }
+    body.lang-en ul { margin-right: 0; margin-left: 24px; }
+    li { margin-bottom: 8px; font-size: 15px; }
     .info-box {
       background: #EAF2FD;
       border-radius: 12px;
@@ -196,10 +167,7 @@
       font-size: 18px;
       margin-bottom: 12px;
     }
-    .info-section p {
-      font-size: 14px;
-      margin-bottom: 8px;
-    }
+    .info-section p { font-size: 14px; margin-bottom: 8px; }
     .info-row {
       display: flex;
       justify-content: space-between;
@@ -207,12 +175,8 @@
       border-bottom: 1px solid rgba(255,255,255,0.15);
       font-size: 14px;
     }
-    .info-row:last-child {
-      border-bottom: none;
-    }
-    .info-row strong {
-      color: rgba(255,255,255,0.8);
-    }
+    .info-row:last-child { border-bottom: none; }
+    .info-row strong { color: rgba(255,255,255,0.8); }
     .footer {
       text-align: center;
       margin-top: 40px;
@@ -221,31 +185,18 @@
       color: #7A8699;
       font-size: 13px;
     }
-    .lang-content {
-      display: none;
-    }
-    .lang-content.active {
-      display: block;
-    }
+    .lang-content { display: none; }
+    .lang-content.active { display: block; }
     @media (max-width: 600px) {
-      .container {
-        padding: 24px;
-      }
-      h1 {
-        font-size: 22px;
-      }
-      h2 {
-        font-size: 17px;
-      }
-      p, li {
-        font-size: 14px;
-      }
+      .container { padding: 24px; }
+      h1 { font-size: 22px; }
+      h2 { font-size: 17px; }
+      p, li { font-size: 14px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- ===== Language Switcher ===== -->
     <div class="lang-switcher">
       <button class="lang-btn active" onclick="switchLang('ckb')" id="btn-ckb">کوردی</button>
       <button class="lang-btn" onclick="switchLang('ar')" id="btn-ar">العربية</button>
@@ -355,7 +306,7 @@
         </div>
         <div class="info-row">
           <strong>وەشان</strong>
-          <span>1.0.0+2</span>
+          <span>1.0.0+3</span>
         </div>
         <div class="info-row">
           <strong>دروستکار</strong>
@@ -367,7 +318,7 @@
         </div>
         <div class="info-row">
           <strong>پلاتفۆرم</strong>
-          <span>Android + iOS + Web</span>
+          <span>Android + iOS</span>
         </div>
       </div>
 
@@ -488,7 +439,7 @@
         </div>
         <div class="info-row">
           <strong>الإصدار</strong>
-          <span>1.0.0+2</span>
+          <span>1.0.0+3</span>
         </div>
         <div class="info-row">
           <strong>المطور</strong>
@@ -500,7 +451,7 @@
         </div>
         <div class="info-row">
           <strong>المنصات</strong>
-          <span>Android + iOS + Web</span>
+          <span>Android + iOS</span>
         </div>
       </div>
 
@@ -621,7 +572,7 @@
         </div>
         <div class="info-row">
           <strong>Version</strong>
-          <span>1.0.0+2</span>
+          <span>1.0.0+3</span>
         </div>
         <div class="info-row">
           <strong>Developer</strong>
@@ -633,7 +584,7 @@
         </div>
         <div class="info-row">
           <strong>Platforms</strong>
-          <span>Android + iOS + Web</span>
+          <span>Android + iOS</span>
         </div>
       </div>
 
